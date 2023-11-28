@@ -1,6 +1,5 @@
 import subprocess
 import pytest
-
 def run_assembler(input_as, output_mx):
     # TODO: make this robust to run in either win, linux, mac
     cmd = [

@@ -43,6 +43,7 @@ class Assembler:
             return self._combine(code)
 
         elif fmt == "r-":
+            #import pdb; pdb.set_trace()
             return self._combine(self._reg(args[0]), code)
 
         elif fmt == "rr":
@@ -82,6 +83,7 @@ class Assembler:
 
     # [combine]
     def _combine(self, *args):
+        #import pdb; pdb.set_trace()
         assert len(args) > 0, "Cannot combine no arguments"
         result = 0
         for a in args:

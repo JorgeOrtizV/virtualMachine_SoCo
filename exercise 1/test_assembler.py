@@ -2,18 +2,19 @@ import subprocess
 import pytest
 
 def run_assembler(input_as, output_mx):
+    # TODO: make this robust to run in either win, linux, mac
     cmd = [
-        'python',
-        'debugger/assembler.py',
+        'py',
+        '../vm/assembler.py',
         input_as,
         output_mx
     ]
     subprocess.run(cmd, check=True)
 
 def test_addTwoNumbers():
-    input_as = 'exercise 1/addTwoNumbers.as'
-    output_mx = 'exercise 1/addTwoNumbers.mx'
-    expected_output_mx = 'exercise 1/test_addTwoNumbers.mx'
+    input_as = 'addTwoNumbers.as'
+    output_mx = 'addTwoNumbers.mx'
+    expected_output_mx = 'test_addTwoNumbers.txt'
 
      # Define the expected output
 
@@ -28,9 +29,9 @@ def test_addTwoNumbers():
     assert output == expected_output
 
 def test_subtractTwoNumbers():
-    input_as = 'exercise 1/subtractTwoNumbers.as'
-    output_mx = 'exercise 1/subtractTwoNumbers.mx'
-    expected_output_mx = 'exercise 1/test_subtractTwoNumbersmx'
+    input_as = 'subtractTwoNumbers.as'
+    output_mx = 'subtractTwoNumbers.mx'
+    expected_output_mx = 'test_subtractTwoNumbers.txt'
 
      # Define the expected output
 

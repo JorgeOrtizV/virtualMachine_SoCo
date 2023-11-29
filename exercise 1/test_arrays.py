@@ -4,11 +4,12 @@ def run_array(input_as):
     # TODO: make this robust to run in either win, linux, mac
     cmd = [
         'py',
-        'vm/arrays.py',
+        '../vm/arrays.py',
         input_as,
-    #    output_mx
+        'test_OOMError.mx'
     ]
     subprocess.run(cmd, check=True)
+
 
 def test_outOfMemoryError():
     input_as = 'outOfMemoryError.as'

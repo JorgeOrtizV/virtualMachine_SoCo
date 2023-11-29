@@ -35,8 +35,17 @@ swp R0 R3
 ldc R3 0
 dec R1
 inc R0 
-dec R1
+dec R2
 bne R2 @loop2
+
+# Prove that the swap was actually made
+ldc R0 @array
+ldc R1 6
+loop3:
+prm R0
+inc R0
+dec R1
+bne R1 @loop3
 
 hlt
 .data

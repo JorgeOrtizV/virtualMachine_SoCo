@@ -1,10 +1,13 @@
 import subprocess
 import pytest
+import sys
 def run_array(input_as):
-    # TODO: make this robust to run in either win, linux, mac
+    python_cmd = 'python'
+    if sys.platform == 'win32':
+        python_cmd = 'py'
     cmd = [
-        'py',
-        '../vm/arrays.py',
+        python_cmd,
+        'vm/arrays.py',
         input_as,
         'test_OOMError.mx'
     ]

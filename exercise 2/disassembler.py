@@ -1,6 +1,7 @@
 import sys
 
 # Import the OPS dictionary and other constants from architecture.py
+sys.path.append('../vm')
 from architecture import OPS, OP_MASK, OP_SHIFT
 
 def disassemble_instruction(instruction):

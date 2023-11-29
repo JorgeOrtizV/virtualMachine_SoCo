@@ -1,10 +1,12 @@
 import subprocess
 import pytest
-
+import sys
 def run_assembler(input_as, output_mx):
-    # TODO: make this robust to run in either win, linux, mac
+    python_cmd = 'python'
+    if sys.platform == 'win32':
+        python_cmd = 'py'
     cmd = [
-        'py',
+        python_cmd,
         '../vm/assembler.py',
         input_as,
         output_mx

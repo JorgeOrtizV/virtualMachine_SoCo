@@ -24,6 +24,7 @@ class VirtualMachine:
     # [fetch]
     def fetch(self):
         instruction = self.ram[self.ip]
+        #import pdb; pdb.set_trace()
         self.ip += 1
         op = instruction & OP_MASK
         instruction >>= OP_SHIFT
@@ -54,6 +55,7 @@ class VirtualMachine:
     def run(self):
         running = True
         while running:
+            #import pdb; pdb.set_trace()
             op, arg0, arg1 = self.fetch()
             if op == OPS["hlt"]["code"]:
                 running = False

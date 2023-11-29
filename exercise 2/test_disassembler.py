@@ -8,7 +8,7 @@ def run_disassembler(input_mx, output_as):
 
     cmd = [
         python_cmd,
-        '../exercise 2/disassembler.py',
+        'disassembler.py',
         input_mx,
         output_as
     ]
@@ -18,7 +18,7 @@ def test_disassembler_addTwoNumbers():
     testing='addTwoNumbers'
     expected_as = f'../exercise 1/assembler_code/{testing}.as'
     input_mx = f'../exercise 1/assembler_output/{testing}.mx'
-    output_as= f'../exercise 2/converted_mx_as/{testing}.as'
+    output_as= f'converted_mx_as/{testing}.as'
     run_disassembler(input_mx, output_as)
 
     with open(expected_as, 'r') as f1, open(expected_as, 'r') as f2:
@@ -31,7 +31,7 @@ def test_disassembler_Loop():
     testing='Loop'
     expected_as = f'../exercise 1/assembler_code/{testing}.as'
     input_mx = f'../exercise 1/assembler_output/{testing}.mx'
-    output_as= f'../exercise 2/converted_mx_as/{testing}.as'
+    output_as= f'converted_mx_as/{testing}.as'
     run_disassembler(input_mx, output_as)
 
     with open(expected_as, 'r') as f1, open(expected_as, 'r') as f2:
@@ -43,7 +43,31 @@ def test_disassembler_subtractTwoNumbers():
     testing='subtractTwoNumbers'
     expected_as = f'../exercise 1/assembler_code/{testing}.as'
     input_mx = f'../exercise 1/assembler_output/{testing}.mx'
-    output_as= f'../exercise 2/converted_mx_as/{testing}.as'
+    output_as= f'converted_mx_as/{testing}.as'
+    run_disassembler(input_mx, output_as)
+
+    with open(expected_as, 'r') as f1, open(expected_as, 'r') as f2:
+        content1 = f1.read()
+        content2 = f2.read()
+        assert content1 == content2, "as files are not the same"
+
+def test_disassembler_StoreLoadFromMemory():
+    testing='StoreLoadFromMemory'
+    expected_as = f'../exercise 1/assembler_code/{testing}.as'
+    input_mx = f'../exercise 1/assembler_output/{testing}.mx'
+    output_as= f'converted_mx_as/{testing}.as'
+    run_disassembler(input_mx, output_as)
+
+    with open(expected_as, 'r') as f1, open(expected_as, 'r') as f2:
+        content1 = f1.read()
+        content2 = f2.read()
+        assert content1 == content2, "as files are not the same"
+
+def test_disassembler_UseOf_beq():
+    testing='UseOf_beq'
+    expected_as = f'../exercise 1/assembler_code/{testing}.as'
+    input_mx = f'../exercise 1/assembler_output/{testing}.mx'
+    output_as= f'converted_mx_as/{testing}.as'
     run_disassembler(input_mx, output_as)
 
     with open(expected_as, 'r') as f1, open(expected_as, 'r') as f2:

@@ -13,6 +13,9 @@ OPS = {
     "bne": {"code": 0x9, "fmt": "rv"},  # Branch if not equal
     "prr": {"code": 0xA, "fmt": "r-"},  # Print register
     "prm": {"code": 0xB, "fmt": "r-"},  # Print memory
+    "inc": {"code": 0xC, "fmt": "r-"},  # Increase register by one
+    "dec": {"code": 0xD, "fmt": "r-"},  # Decrease register by one
+    "swp": {"code": 0xE, "fmt": "rr"},  # Swap the values of the two given registers
 }
 
 OP_MASK = 0xFF  # select a single byte

@@ -21,6 +21,8 @@ class VirtualMachineExtend(VirtualMachineStep):
             "run": self._do_run,
             "s": self._do_step,
             "step": self._do_step,
+            "w": self._add_watchpoint,
+            "watchpoint": self._add_watchpoint,
         }
     # [/init]
 
@@ -55,10 +57,7 @@ class VirtualMachineExtend(VirtualMachineStep):
                         self.write(f"Unknown command {command}")
                     matches=[]
                 else:
-                    print(command)
-                    if command == 'm' or command == 'memory':
-                        interacting = self.handlers[command](self.ip, addresses)
-                    elif command == 'b' or command == 'break' or command=='clear' or command=='c':
+                    if command == 'm' or command == 'memory' or command == 'b' or command == 'break' or command=='c' or command=='clear' or command=='w' or command=='watchpoint':
                         interacting = self.handlers[command](self.ip, addresses)
                     else:
                         interacting = self.handlers[command](self.ip)
@@ -100,6 +99,9 @@ class VirtualMachineExtend(VirtualMachineStep):
         self.state = VMState.STEPPING
         return False
     # [/step]
+
+    def _add_watchpoint(self, addr, addresses):
+        self.watching.extend(addresses)
 
 
 if __name__ == "__main__":

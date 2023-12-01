@@ -24,6 +24,7 @@ class VirtualMachineBase:
         """Set up memory."""
         self.writer = writer
         self.initialize([])
+        self.watching=[]
     # [/init]
 
     def initialize(self, program):
@@ -85,6 +86,9 @@ class VirtualMachineBase:
             self.assert_is_register(arg1)
             self.assert_is_address(self.reg[arg1])
             self.ram[self.reg[arg1]] = self.reg[arg0]
+            if int(self.reg[arg1]) in self.watching:
+                self.write('Halting due to value change in memory address {}'.format(int(self.reg[arg1])))
+                self.state = VMState.STEPPING
 
         elif op == OPS["add"]["code"]:
             self.assert_is_register(arg0)

@@ -1,5 +1,5 @@
 import sys
-
+import re
 from architecture import OPS, VMState
 from vm_extend import VirtualMachineExtend
 
@@ -48,20 +48,32 @@ class VirtualMachineBreak(VirtualMachineExtend):
     # [/run]
 
     # [add]
-    def _do_add_breakpoint(self, addr):
-        if self.ram[addr] == OPS["brk"]["code"]:
-            return
-        self.breaks[addr] = self.ram[addr]
-        self.ram[addr] = OPS["brk"]["code"]
+    def _do_add_breakpoint(self, addr, address):
+        if len(address) == 0:
+            if self.ram[addr] == OPS["brk"]["code"]:
+                return
+            self.breaks[addr] = self.ram[addr]
+            self.ram[addr] = OPS["brk"]["code"]
+        else:
+            if self.ram[address[0]] == OPS["brk"]["code"]:
+                return
+            self.breaks[address[0]] = self.ram[address[0]]
+            self.ram[address[0]] = OPS["brk"]["code"]
         return True
     # [/add]
 
     # [clear]
-    def _do_clear_breakpoint(self, addr):
-        if self.ram[addr] != OPS["brk"]["code"]:
-            return
-        self.ram[addr] = self.breaks[addr]
-        del self.breaks[addr]
+    def _do_clear_breakpoint(self, addr, address):
+        if len(address) == 0:
+            if self.ram[addr] != OPS["brk"]["code"]:
+                return
+            self.ram[addr] = self.breaks[addr]
+            del self.breaks[addr]
+        else:
+            if self.ram[address[0]] != OPS["brk"]["code"]:
+                return
+            self.ram[address[0]] = self.breaks[address[0]]
+            del self.breaks[address[0]]
         return True
     # [/clear]
 

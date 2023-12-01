@@ -41,10 +41,14 @@ class VirtualMachineExtend(VirtualMachineStep):
                 elif command not in self.handlers:
                     self.write(f"Unknown command {command}")
                 else:
+                    print(command)
                     if command == 'm' or command == 'memory':
+                        interacting = self.handlers[command](self.ip, addresses)
+                    elif command == 'b' or command == 'break' or command=='clear' or command=='c':
                         interacting = self.handlers[command](self.ip, addresses)
                     else:
                         interacting = self.handlers[command](self.ip)
+                addresses=[]
             except EOFError:
                 self.state = VMState.FINISHED
                 interacting = False

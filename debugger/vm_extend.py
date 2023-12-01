@@ -29,6 +29,7 @@ class VirtualMachineExtend(VirtualMachineStep):
         prompt = "".join(sorted({key[0] for key in self.handlers}))
         interacting = True
         addresses=[]
+        matches = []
         while interacting:
             try:
                 command = self.read(f"{addr:06x} [{prompt}]> ")
@@ -39,7 +40,20 @@ class VirtualMachineExtend(VirtualMachineStep):
                 if not command:
                     continue
                 elif command not in self.handlers:
-                    self.write(f"Unknown command {command}")
+                    matches = [com for com in self.handlers.keys() if com.startswith(command)]
+                    if len(matches) == 1:
+                        command = matches[0]
+                        self.write("Autocompletion detected the following command: {}".format(command))
+                        if command == 'break' or command == 'clear' or command == 'memory':
+                            interacting = self.handlers[command](self.ip, addresses)
+                        else:
+                            interacting = self.handlers[command](self.ip)
+                    elif len(matches)>1:
+                        self.write("Did you meant to use any of the following commands? Please provide more information for command execution.")
+                        self.write(' '.join(matches))
+                    else:
+                        self.write(f"Unknown command {command}")
+                    matches=[]
                 else:
                     print(command)
                     if command == 'm' or command == 'memory':

@@ -119,10 +119,17 @@ class VirtualMachineBase:
             self.assert_is_address(self.reg[arg0])
             self.write(f"{self.ram[self.reg[arg0]]:06x}")
 
+        elif op == OPS["inc"]["code"]:
+                self.reg[arg0] += 1
+        elif op == OPS["dec"]["code"]:
+            self.reg[arg0] -= 1
+        elif op == OPS["swp"]["code"]:
+            self.ram[self.reg[arg0]], self.ram[self.reg[arg1]] = self.ram[self.reg[arg1]], self.ram[self.reg[arg0]]
+
         else:
             assert False, f"Unknown op {op:06x}"
 
-    def show(self):
+    def show(self, addresses=[]):
         """Show the IP, registers, and memory."""
         # Show IP and registers
         self.write(f"IP{' ' * 6}= {self.ip:06x}")
@@ -140,6 +147,32 @@ class VirtualMachineBase:
                 output += f"  {self.ram[base + i]:06x}"
             self.write(output)
             base += COLUMNS
+
+    def show_addr(self, address):
+        output = f"{address:06x}: "
+        output += f"  {self.ram[address]:06x}"
+        self.write(output)
+
+    def show_addrs(self, addresses):
+        start = addresses[0]
+        end = addresses[1]
+        printed = 1
+        mems = []
+        for i in range(start, end+1):
+            mems.append(f"{self.ram[i]:06x}")
+            printed+=1
+            if printed%5 == 0:
+                output = f"{i-3:06x}: "
+                output += '  '.join(mems)
+                self.write(output)
+                printed=1
+                mems = []
+        # print any remaining mems
+        if len(mems) > 0:
+            output = f"{end-len(mems)+1:06x}: "
+            output += '  '.join(mems)
+            self.write(output)
+
 
     def assert_is_register(self, reg):
         assert 0 <= reg < len(self.reg), f"Invalid register {reg:06x}"

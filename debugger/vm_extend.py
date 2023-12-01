@@ -1,5 +1,5 @@
 import sys
-
+import re
 from architecture import VMState
 from vm_step import VirtualMachineStep
 
@@ -28,15 +28,23 @@ class VirtualMachineExtend(VirtualMachineStep):
     def interact(self, addr):
         prompt = "".join(sorted({key[0] for key in self.handlers}))
         interacting = True
+        addresses=[]
         while interacting:
             try:
                 command = self.read(f"{addr:06x} [{prompt}]> ")
+                if re.match(re.compile('[a-z]+ [0-9]+'), command) or re.match(re.compile('[a-z]+ [0-9]+ [0-9]+'),command):
+                    command_list = command.split()
+                    command = command_list[0]
+                    addresses = list(map(int, command_list[1:]))
                 if not command:
                     continue
                 elif command not in self.handlers:
                     self.write(f"Unknown command {command}")
                 else:
-                    interacting = self.handlers[command](self.ip)
+                    if command == 'm' or command == 'memory':
+                        interacting = self.handlers[command](self.ip, addresses)
+                    else:
+                        interacting = self.handlers[command](self.ip)
             except EOFError:
                 self.state = VMState.FINISHED
                 interacting = False
@@ -51,8 +59,13 @@ class VirtualMachineExtend(VirtualMachineStep):
         return True
 
     # [memory]
-    def _do_memory(self, addr):
-        self.show()
+    def _do_memory(self, addr, addresses=[]):
+        if len(addresses) == 0:
+            self.show()
+        elif len(addresses) == 1:
+            self.show_addr(addresses[0])
+        elif len(addresses) == 2:
+            self.show_addrs(addresses)
         return True
     # [/memory]
 

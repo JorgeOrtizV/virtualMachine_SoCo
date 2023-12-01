@@ -14,6 +14,9 @@ OPS = {
     "prr": {"code": 10, "fmt": "r-"},  # Print register
     "prm": {"code": 11, "fmt": "r-"},  # Print memory
     "brk": {"code": 15, "fmt": "--"},  # Breakpoint
+    "inc": {"code": 16, "fmt": "r-"},  # Increase register by one
+    "dec": {"code": 17, "fmt": "r-"},  # Decrease register by one
+    "swp": {"code": 18, "fmt": "rr"},  # Swap the values of the two given registers
 }
 
 OP_MASK = 0xFF  # select a single byte

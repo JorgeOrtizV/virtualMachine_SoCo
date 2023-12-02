@@ -33,11 +33,25 @@ and next we run the output .mx file with the vm:
 ```bash
 py "vm/vm.py" "exercise 1\assembler_code\StoreLoadFromMemory.mx" "exercise 1\assembler_code\StoreLoadFromMemory_vm.mx" 
 ```
+The tests:
+```bash
+pytest "exercise 1\test_assembler.py"
+```
+
+```bash
+ pytest "exercise 1\test_vm.py"
+```
+
 For the exercise 2 :
 
 ```bash
 py "exercise 2\disassembler.py" "exercise 2\converted_mx_as\addTwoNumbers.mx" "exercise 2\converted_mx_as\addTwoNumbers.as"
 ```
+For the test:
+```bash
+ pytest "exercise 2\test_disassembler.py"
+```
+
 # Measure and Report the test coverage
 
 

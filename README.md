@@ -27,9 +27,10 @@ i)
 Not assuming the correctness of the Assembler introduces a range of complexities, from the need for extensive testing and validation to robust error handling and user communication.
 
 ### Exercise 1 (C)
-In the folder `exercise 1` we have in `assembler_code` a file `outOfMemory.as` where we have implemented an example with many loops which drive the system out of memory.
+In the folder `exercise 1` we have in `test_files` the files `test_OOMError.mx` and `noInstruction_vm.mx` .
+
 ```bash
-py "vm\arrays.py" "exercise 1\assembler_code\outOfMemoryError.as" "exercise 1\assembler_code\outOfMemoryError.mx"
+pytest "exercise 1/test_vm.py"
 ```
 ![image](https://github.com/JorgeOrtizV/virtualMachine_SoCo/assets/141324290/f6bbd0de-f6f5-4e0b-9004-3201f693468b)
 

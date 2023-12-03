@@ -99,16 +99,21 @@ Exercise 4 :
 Exercise 4:
 
 ## Description of the files
-### 1. assembler-code 
-we have all the examples of exercise 1 with assembly.
-### 2. assembler-output
-we have all the outputs.mx files of the assembler 
-### 2. vm-output
-we have all the outputs_vm.mx files of the vm 
-### 3. test_files 
-we have all the .txt files we use for the test
 
+### test_assembler.py
+We have implemented the tests for each example for the assembler.
+### test_vm.py
+We have implemented the tests for each example for the vm.
 
+### disassembler.py
+We have implemented the disassembler, which takes the mx.file and outputs the initial .as file, which is readable by the user.
+
+### test_disassembler.py
+We have implemented the test for each example we have and we run it with the use of pytest.
+
+For exercise 3, we don't have new files we expanded the `architecture.py` by 3 more instructions: `inc` `dec` and `swp` and we modify the rest files.
+
+### debugger
 
 
 

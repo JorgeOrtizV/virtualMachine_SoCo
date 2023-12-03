@@ -3,21 +3,21 @@
 For the first exercise we have made a folder ` exercise 1`  in which we have the assemble examples `assembler code`, the tests for these examples `test_files` and the outputs of the assembler `assembler_output` and the output of vm `vm_output`. For the exercise two we have in the folder `exercise 2 ` the disassembler `disassembler.py` , its test `test_disassembler.py` and the examples. In `exercise 3` folder we have the examples and the outputs for every quetsion.
 
 ## Features
-### VIRTUAL MACHINE(VM)
+#### VIRTUAL MACHINE(VM)
 -Memory Management: Simulates memory allocation, access, and management techniques used in real-world VMs.
 
-### Debugger
+#### Debugger
 -Breakpoints: Ability to set and manage breakpoints for effective debugging.
 -Step Execution: Feature to execute code step-by-step for detailed analysis.
 -Variable Inspection: Tools to inspect and modify the values of variables during runtime.
 
-### Disassembler
+#### Disassembler
 -Reverse Engineering: Converts machine code back into a human-readable assembly language format
 ### Unit Testing
 -Automated Tests: Implementation of automated tests to validate the functionality of each component.
 -Test Coverage Analysis: Tools to analyze the extent of code covered by the tests to ensure thorough testing.
 
-### Additional Features
+#### Additional Features
 -User Interface: A simple, intuitive interface for interacting with the VM and debugger.
 -Documentation: Comprehensive documentation for each module, detailing its purpose and usage.
 -Error Handling: Robust error handling mechanisms to manage and report errors gracefully.
@@ -94,7 +94,23 @@ we run every example like:
 ```bash
 py "vm\vm.py" "exercise 3\example_3_1.mx" -
 ```
+Exercise 4 :
+
 Exercise 4:
+
+## Description of the files
+### 1. assembler-code 
+we have all the examples of exercise 1 with assembly.
+### 2. assembler-output
+we have all the outputs.mx files of the assembler 
+### 2. vm-output
+we have all the outputs_vm.mx files of the vm 
+### 3. test_files 
+we have all the .txt files we use for the test
+
+
+
+
 
 
 

@@ -23,7 +23,7 @@ This repository contains an implementation of an assembler, virtual machine, and
 - Error Handling: Robust error handling mechanisms to manage and report errors gracefully.
 
 ### Exercise 1 (A)
-Unit Tests were developed to test each of the existing functionalities of our assembler and virtual machine. The assembler codes can be found in the folder `assembler_code`, the outputs of the assembler are stored in the folder `assembler_output`, and the results of the virtual machine in `vm_output`. Files relevant for the module pytest are stored in the folder `test_files`. To run the tests of this section it is only necessary to change directory to the folder `exercise 1` and run the command `pytest`
+Unit Tests were developed to test each of the existing functionalities of our assembler and virtual machine. The assembler codes can be found in the folder `assembler_code`, the outputs of the assembler are stored in the folder `assembler_output`, and the results of the virtual machine in `vm_output`. Files relevant for the module pytest are stored in the folder `test_files`. To run the tests of this section it is only necessary to change directory to the folder `exercise 1` and run the command `pytest`. In the `test_files` it is possible to find the expected output of the test files. This output was calculated by hand based on the assembler code.
 
 ### Exercise 1 (B)
 i) What are the implications of not assuming that the assembler is correct? 
